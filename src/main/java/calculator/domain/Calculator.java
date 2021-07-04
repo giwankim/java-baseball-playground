@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class Calculator {
 
-  private static String getInput() {
-    System.out.println("문자열:");
+  private static String getText() {
+    System.out.println("문자열을 입력하세요:");
     Scanner scanner = new Scanner(System.in);
     return scanner.nextLine();
   }
 
-  public int calculate(String text) {
+  public static int calculate(String text) {
     if (isBlank(text)) {
       return 0;
     }
@@ -19,39 +19,39 @@ public class Calculator {
     for (int i = 1; i < tokens.length; i += 2) {
       String operator = tokens[i];
       int number = Integer.parseInt(tokens[i + 1]);
-      result = getResult(result, operator, number);
+      result = getNextResult(result, operator, number);
     }
     return result;
   }
 
-  private int getResult(int result, String operator, int number) {
+  private static int getNextResult(int result, String operator, int number) {
+    int nextResult = result;
     switch (operator) {
       case "+":
-        result += number;
+        nextResult += number;
         break;
       case "-":
-        result -= number;
+        nextResult -= number;
         break;
       case "*":
-        result *= number;
+        nextResult *= number;
         break;
       case "/":
-        result /= number;
+        nextResult /= number;
         break;
       default:
         break;
     }
-    return result;
+    return nextResult;
   }
 
-  private boolean isBlank(String text) {
+  private static boolean isBlank(String text) {
     return text == null || text.isEmpty();
   }
 
   public static void main(String[] args) {
-    Calculator calculator = new Calculator();
-    String text = getInput();
-    int result = calculator.calculate(text);
-    System.out.println(result);
+    String text = getText();
+    int result = calculate(text);
+    System.out.println("결과값: " + result);
   }
 }
