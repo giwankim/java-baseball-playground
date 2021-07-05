@@ -1,14 +1,6 @@
 package calculator.domain;
 
-import java.util.Scanner;
-
 public class Calculator {
-
-  private static String getText() {
-    System.out.println("문자열을 입력하세요:");
-    Scanner scanner = new Scanner(System.in);
-    return scanner.nextLine();
-  }
 
   public static int calculate(String text) {
     if (isBlank(text)) {
@@ -50,7 +42,7 @@ public class Calculator {
   }
 
   public static void main(String[] args) {
-    String text = getText();
+    String text = Input.getText();
     int result = calculate(text);
     System.out.println("결과값: " + result);
   }
