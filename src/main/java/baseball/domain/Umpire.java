@@ -4,39 +4,44 @@ import java.util.List;
 
 public class Umpire {
 
-  List<Integer> computer;
-
-  public Umpire(List<Integer> _computer) {
-    this.computer = _computer;
+  public static Call makeCall(List<Integer> player, List<Integer> computer) {
+    int balls = callBalls(player, computer);
+    int strikes = callStrikes(player, computer);
+    return new Call(balls, strikes);
   }
 
-  public int callStrikes(int[] player) {
+  private static int callStrikes(List<Integer> player, List<Integer> computer) {
     int strikes = 0;
-    for (int i = 0; i < player.length; i++) {
-      strikes = callStrike(player[i], computer.get(i), strikes);
+    for (int i = 0; i < player.size(); i++) {
+      strikes = updateStrikes(player.get(i), computer.get(i), strikes);
     }
     return strikes;
   }
 
-  private int callStrike(int playerNumber, int computerNumber, int strikes) {
+  private static int updateStrikes(int playerNumber, int computerNumber, int strikes) {
     if (playerNumber == computerNumber) {
       strikes += 1;
     }
     return strikes;
   }
 
-  public int callBalls(int[] player) {
-    int numberOfCorrect = getNumberOfCorrect(player);
-    int strikes = callStrikes(player);
-    return numberOfCorrect - strikes;
+  private static int callBalls(List<Integer> player, List<Integer> computer) {
+    int correct = getCorrect(player, computer);
+    int strikes = callStrikes(player, computer);
+    return correct - strikes;
   }
 
-  private int getNumberOfCorrect(int[] player) {
+  private static int getCorrect(List<Integer> player, List<Integer> computer) {
     int correct = 0;
     for (int number : player) {
-      if (computer.contains(number)) {
-        correct += 1;
-      }
+      correct = updateCorrect(correct, number, computer);
+    }
+    return correct;
+  }
+
+  private static int updateCorrect(int correct, int number, List<Integer> computer) {
+    if (!computer.isEmpty() && computer.contains(number)) {
+      correct += 1;
     }
     return correct;
   }
