@@ -6,13 +6,13 @@ import java.util.Scanner;
 
 public class Input {
 
-  public static List<Integer> getInput(final Scanner scanner) {
+  public static List<Integer> getUserInput(final Scanner scanner) {
     System.out.print("숫자를 입력해 주세요 : ");
-    String input = scanner.next();
-    return parse(input);
+    String userInput = scanner.next();
+    return parseUserInput(userInput);
   }
 
-  public static List<Integer> parse(String input) {
+  public static List<Integer> parseUserInput(String input) {
     List<Integer> numbers = new ArrayList<>();
     for (int i = 0; i < input.length(); i++) {
       int number = input.charAt(i) - '0';
@@ -21,10 +21,4 @@ public class Input {
     return numbers;
   }
 
-  public static void main(String[] args) {
-    final Scanner scanner = new Scanner(System.in);
-    List<Integer> player = getInput(scanner);
-    System.out.println("사용자 입력 : " + player);
-    System.out.println("Length = " + player.size());
-  }
 }

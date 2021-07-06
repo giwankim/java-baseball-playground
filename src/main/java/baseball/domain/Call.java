@@ -20,21 +20,22 @@ public class Call {
 
   @Override
   public String toString() {
-    return "Call{" +
-        "balls=" + balls +
-        ", strikes=" + strikes +
-        '}';
+    if (balls == 0 && strikes == 0) {
+      return "낫싱";
+    }
+    StringBuilder stringBuilder = new StringBuilder();
+    if (balls > 0) {
+      stringBuilder.append(balls);
+      stringBuilder.append("볼");
+      if (strikes > 0) {
+        stringBuilder.append(" ");
+      }
+    }
+    if (strikes > 0) {
+      stringBuilder.append(strikes);
+      stringBuilder.append("스트라이크");
+    }
+    return stringBuilder.toString();
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (!(o instanceof Call)) {
-      return false;
-    }
-    Call call = (Call) o;
-    return getBalls() == call.getBalls() && getStrikes() == call.getStrikes();
-  }
 }
