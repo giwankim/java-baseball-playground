@@ -9,14 +9,15 @@ import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utils.RandomUtils;
 
-class NumberGeneratorTest {
+class RandomUtilsTest {
 
   List<Integer> numbers;
 
   @BeforeEach
   void setUp() {
-    numbers = NumberGenerator.getRandomNumber();
+    numbers = RandomUtils.getRandomNumber();
   }
 
   @Test
@@ -25,7 +26,7 @@ class NumberGeneratorTest {
   }
 
   @Test
-  void numbers_are_between_one_and_ten() {
+  void numbers_are_between_one_and_nine_inclusive() {
     for (Integer number : numbers) {
       assertThat(number).isBetween(1, 9);
     }
