@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 public class BallNumber {
 
@@ -17,5 +17,17 @@ public class BallNumber {
 
   public int getNumber() {
     return number;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof BallNumber)) {
+      return false;
+    }
+    BallNumber that = (BallNumber) o;
+    return getNumber() == that.getNumber();
   }
 }
