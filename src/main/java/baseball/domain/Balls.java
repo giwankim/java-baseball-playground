@@ -29,11 +29,20 @@ public class Balls {
     }
   }
 
-  public BallStatus play(Ball playerBall) {
+  public BallStatus play(Ball opponentBall) {
     return balls.stream()
-        .map(ball -> ball.play(playerBall))
+        .map(ball -> ball.play(opponentBall))
         .filter(BallStatus::isNotNothing)
         .findFirst()
         .orElse(BallStatus.NOTHING);
+  }
+
+  public PlayResult play(Balls opponentBalls) {
+    PlayResult playResult = new PlayResult();
+    for (Ball ball : balls) {
+      BallStatus ballStatus = opponentBalls.play(ball);
+      playResult.update(ballStatus);
+    }
+    return playResult;
   }
 }
