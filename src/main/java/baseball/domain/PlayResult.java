@@ -24,7 +24,7 @@ public class PlayResult {
   }
 
   public boolean isNothing() {
-    return true;
+    return strikes == 0 && balls == 0;
   }
 
   public void update(BallStatus ballStatus) {
@@ -50,5 +50,20 @@ public class PlayResult {
     }
     PlayResult that = (PlayResult) o;
     return getStrikes() == that.getStrikes() && getBalls() == that.getBalls();
+  }
+
+  @Override
+  public String toString() {
+    if (isNothing()) {
+      return "낫싱";
+    }
+    String result = "";
+    if (balls > 0) {
+      result += balls + "볼 ";
+    }
+    if (strikes > 0) {
+      result += strikes + "스트라이크";
+    }
+    return result;
   }
 }

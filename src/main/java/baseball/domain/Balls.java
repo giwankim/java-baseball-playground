@@ -45,4 +45,14 @@ public class Balls {
     }
     return playResult;
   }
+
+  @Override
+  public String toString() {
+    String result = "Balls{balls=";
+    for (Ball ball : balls) {
+      result += ball.getBallNumber().getNumber() + ", ";
+    }
+    result += '}';
+    return result;
+  }
 }
