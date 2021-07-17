@@ -1,6 +1,6 @@
 package baseball;
 
-import baseball.domain.Game;
+import baseball.controller.GameController;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ public class Application {
 
   public static void main(String[] args) {
     final Scanner scanner = new Scanner(System.in);
-    Game game = new Game(scanner);
-    game.play();
+    GameController gameController = new GameController(scanner);
+    gameController.start();
   }
 }
